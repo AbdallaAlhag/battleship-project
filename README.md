@@ -1,2 +1,1 @@
-# dev-template
-# dev-template
+## BattleShip project
