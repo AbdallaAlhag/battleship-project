@@ -1,0 +1,115 @@
+/* Reset default margin and padding */
+body,
+html,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background-image: url("./asset/background.jpg");
+  background-size: cover; /* Cover the entire background */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the background image */
+  backdrop-filter: blur(3px); /* Blur effect */
+}
+
+.screen.welcome {
+  width: 100%;
+  height: 100vh;
+  /* background: blue; */
+  display: flex;
+  justify-content: center;
+}
+
+.welcome-container {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.welcome-container h1 {
+  font-size: 200px;
+}
+
+.welcome-container p {
+  color: whitesmoke;
+  font-size: 50px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.button-container input {
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+  outline: none;
+}
+
+.button-container input:focus {
+  border-color: #05060f;
+}
+
+.button-class {
+  margin-top: 10px;
+}
+
+.button-class {
+  padding: 1em 2em;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #0ea5e9;
+  transition: all 1000ms;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  outline: 2px solid #0ea5e9;
+}
+
+.button-class:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+  outline: 2px solid #0ea5e9;
+  box-shadow: 4px 5px 17px -4px #0ea5e9;
+}
+
+.button-class::before {
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background-color: #0ea5e9;
+  transform: skewX(45deg);
+  z-index: -1;
+  transition: width 1000ms;
+}
+
+.button-class:hover::before {
+  width: 250%;
+}
