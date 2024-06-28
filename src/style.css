@@ -1,13 +1,15 @@
 body {
   margin: 0;
 }
-
-.container {
+.screen {
   height: 100vh;
   width: 100%;
+}
+.board-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-top: 5%;
 }
 
 .board {
@@ -24,16 +26,63 @@ body {
 }
 
 .board button {
-    background-color: whitesmoke;
-    padding: 10px 10px;
-    border: 1px solid grey;
-    color: whitesmoke;
-    /* color: black; */
-
+  background-color: whitesmoke;
+  padding: 10px 10px;
+  border: 1px solid grey;
+  color: whitesmoke;
+  /* color: black; */
+}
+.inner-board-container {
+  text-align: center;
+  color: whitesmoke;
+}
+.board button:hover {
+  /* color: whitesmoke; */
+  color: grey;
+  background-color: grey;
 }
 
-.board button:hover {
-    /* color: whitesmoke; */
-    color: grey;
-    background-color: grey;
-  }
+.game-button-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.game-button-container button::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: all 0.5s ease-in-out;
+  background-color: #333;
+  border-radius: 30px;
+  visibility: hidden;
+  height: 10px;
+  width: 10px;
+  z-index: -1;
+}
+
+.game-button-container button {
+  height: 50px;
+  width: 200px;
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid whitesmoke;
+  overflow: hidden;
+  border-radius: 30px;
+  color: whitesmoke;
+  transition: all 0.2s ease-in-out;
+}
+
+.game-button-container button:hover{
+  box-shadow: 1px 1px 200px #252525;
+  color: #fff;
+  border: none;
+}
+
+.game-button-container button:hover::after{
+  visibility: visible;
+  transform: scale(100) translateX(2px);
+}

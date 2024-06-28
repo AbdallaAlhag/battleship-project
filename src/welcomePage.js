@@ -1,3 +1,5 @@
+import { ScreenController } from "./controller";
+
 export function welcomePage(){
     const screen = document.querySelector('.screen')
     screen.classList.add('welcome')
@@ -18,7 +20,6 @@ export function welcomePage(){
     inputElement.id = 'myInput';
     inputElement.name = 'myInputName';
     inputElement.placeholder = 'Enter text here...';
-    inputElement.value = 'Default value';
 
 
     // Create a button element
@@ -34,7 +35,7 @@ export function welcomePage(){
     // Add an event listener for the button
     buttonElement.addEventListener('click', () => {
         const inputValue = inputElement.value;
-        alert('Button clicked! Input value is: ' + inputValue);
+        ScreenController(inputValue);
     });
 
     const buttonContainer = document.createElement('div')
