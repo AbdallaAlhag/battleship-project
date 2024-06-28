@@ -1,0 +1,39 @@
+body {
+  margin: 0;
+}
+
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  height: 600px;
+  width: 600px;
+}
+
+.grid {
+  height: 60px;
+  width: 60px;
+  border: 1px solid grey;
+}
+
+.board button {
+    background-color: whitesmoke;
+    padding: 10px 10px;
+    border: 1px solid grey;
+    color: whitesmoke;
+    /* color: black; */
+
+}
+
+.board button:hover {
+    /* color: whitesmoke; */
+    color: grey;
+    background-color: grey;
+  }

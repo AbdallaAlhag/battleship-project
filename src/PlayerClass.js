@@ -12,7 +12,7 @@ export class Player {
     }
 }
 
-export class realPlayer extends Player {
+export class RealPlayer extends Player {
     constructor(name, token) {
         super(name, token);
     }
@@ -27,6 +27,9 @@ export class ComputerPlayer extends Player {
 
     makeMove(){
         // Logic for computer's move
+        const x = Math.floor(Math.random() * 10);
+        const y = Math.floor(Math.random() * 10);
+        return { x, y };
     }
 
     // Additional methods here...

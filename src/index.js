@@ -1,2 +1,4 @@
 import "./style.css";
-console.log("Welcome to new project");
+import { ScreenController } from "./controller";
+
+ScreenController();

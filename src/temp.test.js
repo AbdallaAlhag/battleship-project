@@ -2,7 +2,7 @@
 // const Ship = require('./createShip'); // Adjust the path as per your project structure
 import { Ship } from './ShipClass.js'; // Adjust the path as per your project structure
 import { GameBoard } from './GameBoardClass.js';
-import { realPlayer, ComputerPlayer } from './PlayerClass.js';
+import { RealPlayer, ComputerPlayer } from './PlayerClass.js';
 
 describe('Ship class', () => {
     let ship;
@@ -95,7 +95,7 @@ describe('Player Class', () => {
 
     beforeEach(() => {
         // Reset ship instance before each test
-        player = new realPlayer('Abdalla', 1);
+        player = new RealPlayer('Abdalla', 1);
         computer = new ComputerPlayer('Megatron30000', 2);
     });
 
