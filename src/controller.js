@@ -1,7 +1,8 @@
 import { RealPlayer, ComputerPlayer } from "./PlayerClass";
 import { welcomePage } from "./welcomePage";
 
-function GameController(player1, player2) {
+
+export function GameController(player1, player2) {
     const players = [
         new RealPlayer(player1.name, player1.token),
         new ComputerPlayer(player2.name, player2.token)

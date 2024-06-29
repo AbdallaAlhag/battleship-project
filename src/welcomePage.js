@@ -1,8 +1,9 @@
 import { ScreenController } from "./controller";
 
 export function welcomePage(){
-    const screen = document.querySelector('.screen')
-    screen.classList.add('welcome')
+    const screen = document.querySelector('.screen');
+    screen.classList.remove('game');
+    screen.classList.add('welcome');
     screen.textContent = '';
 
     const containerElement = document.createElement('div');
