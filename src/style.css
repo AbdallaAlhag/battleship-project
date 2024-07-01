@@ -33,6 +33,12 @@ body {
   color: whitesmoke;
   /* color: black; */
 }
+
+.board.cheat button {
+  background-color: green;
+}
+
+
 .inner-board-container {
   text-align: center;
   color: whitesmoke;

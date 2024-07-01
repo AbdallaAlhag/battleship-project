@@ -47,7 +47,7 @@ export function GameController(player1, player2) {
 export function ScreenController(userName) {
     const p1 = { name: userName, token: '1' };
     const p2 = { name: 'Computer', token: '2' };
-
+    let cheatActive = false;
     createGameContainer()
 
     const gameController = GameController(p1, p2);
@@ -58,10 +58,12 @@ export function ScreenController(userName) {
 
         displayBoard(gameController.players[0], '#board1');
         displayBoard(gameController.players[1], '#board2');
+
     }
 
     // const board1 = document.querySelector('#board1')
     updateScreen();
+    createCheats(gameController);
 
 
     function displayBoard(player, boardChoice) {
@@ -71,6 +73,7 @@ export function ScreenController(userName) {
         boardDiv.textContent = ''
 
         const board = player.gameBoard.board
+        
 
 
         board.forEach((row, rowIndex) => {
@@ -89,13 +92,16 @@ export function ScreenController(userName) {
                     gridButton.style.background = 'blue';
                     gridButton.textContent = 'miss'
                 }
+
+                if (cheatActive && board[rowIndex][colIndex] > 0 && boardChoice === '#board2') {
+                    gridButton.style.background = 'green';
+                }
+
                 boardDiv.appendChild(gridButton);
             })
         })
         
-        function styleGrid(){
-            // Change the style of a grid if it is a hit or miss
-        }
+
 
         function clickHandlerBoard(e) {
             const row = e.target.dataset.row;
@@ -118,6 +124,16 @@ export function ScreenController(userName) {
         if (newBoardDiv.id === 'board2') {
             newBoardDiv.addEventListener("click", clickHandlerBoard);
         }
+
+    }
+
+    function createCheats(gameController){
+        const cheatButton = document.querySelector('#cheat-button')
+        cheatButton.addEventListener('click', () => {
+            cheatActive = !cheatActive; // Toggle cheat mode state
+            displayBoard(gameController.players[1], '#board2'); // Update board display after toggling cheat mode
+
+        })
 
     }
 
@@ -144,6 +160,7 @@ function createGameContainer() {
     resetButton.addEventListener('click', () =>{
         welcomePage();
     })
+
 
     buttonContainer.appendChild(cheatButton);
     buttonContainer.appendChild(resetButton);
@@ -187,6 +204,7 @@ function createGameContainer() {
     screen.classList.add('game');
     screen.textContent = '';    
     screen.appendChild(container);
-    screen.appendChild(buttonContainer)
+    screen.appendChild(buttonContainer);
 }
+
 
