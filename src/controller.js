@@ -15,19 +15,20 @@ export function GameController(player1, player2, player1Coord) {
         activePlayer = activePlayer === players[0] ? players[1] : players[0]
     };
 
-    const playRound = (row=0, col=0) => {
+    const playRound = (row = 0, col = 0) => {
         if (activePlayer == players[0]) {
             players[1].gameBoard.receiveAttack(row, col)
-            if (players[1].gameBoard.gameOver()){
+            if (players[1].gameBoard.gameOver()) {
                 return true;
             }
         } else {
-            let {x, y} = players[1].makeMove();
-            while (players[0].gameBoard.board[x][y] < 0){
-                ({x, y} = players[1].makeMove());
-            }
+            let x, y;
+            do {
+                ({ x, y } = players[1].makeMove());
+            } while (players[0].gameBoard.board[x][y] < 0)
+
             players[0].gameBoard.receiveAttack(x, y)
-            if (players[0].gameBoard.gameOver()){
+            if (players[0].gameBoard.gameOver()) {
                 return true;
             }
         }
@@ -45,15 +46,13 @@ export function GameController(player1, player2, player1Coord) {
 }
 
 
-export function ScreenController(userName='Player1', coordinate) {
+export function ScreenController(userName = 'Player1', coordinate) {
     const p1 = { name: userName, token: '1' };
     const p2 = { name: 'Computer', token: '2' };
     let cheatActive = false;
     createGameContainer()
 
     const gameController = GameController(p1, p2, coordinate);
-    console.log(gameController.players[0].gameBoard.board);
-    console.log(gameController.players[1].gameBoard.board);
 
 
     const updateScreen = () => {
@@ -77,7 +76,7 @@ export function ScreenController(userName='Player1', coordinate) {
         boardDiv.textContent = ''
 
         const board = player.gameBoard.board
-        
+
 
 
         board.forEach((row, rowIndex) => {
@@ -89,10 +88,10 @@ export function ScreenController(userName='Player1', coordinate) {
                 gridButton.dataset.row = rowIndex;
 
                 gridButton.textContent = grid; //board[row][grid];
-                if (grid == -1){
+                if (grid == -1) {
                     gridButton.style.background = 'red';
                     gridButton.textContent = 'hit'
-                } else if (grid == -2){
+                } else if (grid == -2) {
                     gridButton.style.background = 'blue';
                     gridButton.textContent = 'miss'
                 }
@@ -105,17 +104,15 @@ export function ScreenController(userName='Player1', coordinate) {
                 boardDiv.appendChild(gridButton);
             })
         })
-        
-
 
         function clickHandlerBoard(e) {
             const row = e.target.dataset.row;
             const col = e.target.dataset.col;
 
             if (!row && !col || player.gameBoard.board[row][col] < 0) return;
-            
+
             // Call it twice ? since one is a computer's turn
-            if (gameController.playRound(row, col) || gameController.playRound()){
+            if (gameController.playRound(row, col) || gameController.playRound()) {
                 alert('game over');
             } else {
                 updateScreen();
@@ -132,7 +129,7 @@ export function ScreenController(userName='Player1', coordinate) {
 
     }
 
-    function createCheats(gameController){
+    function createCheats(gameController) {
         const cheatButton = document.querySelector('#cheat-button')
         cheatButton.addEventListener('click', () => {
             cheatActive = !cheatActive; // Toggle cheat mode state
@@ -147,7 +144,7 @@ export function ScreenController(userName='Player1', coordinate) {
 
 function createGameContainer() {
     // Create container div
-    
+
     const container = document.createElement('div');
     container.classList.add('board-container');
 
@@ -162,7 +159,7 @@ function createGameContainer() {
     resetButton.id = 'reset-button';
     resetButton.textContent = 'Reset';
 
-    resetButton.addEventListener('click', () =>{
+    resetButton.addEventListener('click', () => {
         welcomePage();
     })
 
@@ -182,7 +179,7 @@ function createGameContainer() {
 
     board1Container.appendChild(board1)
     board1Container.appendChild(text1)
-    
+
 
     const board2Container = document.createElement('div');
     board2Container.classList.add('inner-board-container');
@@ -191,7 +188,7 @@ function createGameContainer() {
     board2.classList.add('board');
     board2.id = 'board2';
 
-    
+
     const text2 = document.createElement('p');
     text2.textContent = "Computer's Board";
 
@@ -207,7 +204,7 @@ function createGameContainer() {
     const screen = document.querySelector('.screen');
     screen.classList.remove('welcome');
     screen.classList.add('game');
-    screen.textContent = '';    
+    screen.textContent = '';
     screen.appendChild(container);
     screen.appendChild(buttonContainer);
 }

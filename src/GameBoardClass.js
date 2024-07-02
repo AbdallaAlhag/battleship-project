@@ -35,7 +35,7 @@ export class GameBoard {
             for (let j = 0; j < coord.length; j++) {
                     const x = coord[j][0];
                     const y = coord[j][1]
-                    this.board[x][y] = coord[j][2];
+                    this.board[x][y] = Number(coord[j][2]);
                 }
         }
 

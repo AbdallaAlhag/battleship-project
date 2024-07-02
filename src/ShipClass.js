@@ -5,7 +5,7 @@ export class Ship{
         this.sink = sink;
     }
     hit(){
-        this.hitNumber += 1
+        this.hitNumber += 1; 
     }
     isSunk(){
         if (this.hitNumber === this.length){

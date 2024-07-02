@@ -175,3 +175,4 @@ describe('ScreenController', () => {
         expect(screen.classList.contains('.welcome')).not.toBeNull();
     });
 });
+
