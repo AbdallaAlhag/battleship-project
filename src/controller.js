@@ -2,9 +2,10 @@ import { RealPlayer, ComputerPlayer } from "./PlayerClass";
 import { welcomePage } from "./welcomePage";
 
 
-export function GameController(player1, player2) {
+
+export function GameController(player1, player2, player1Coord) {
     const players = [
-        new RealPlayer(player1.name, player1.token),
+        new RealPlayer(player1.name, player1.token, player1Coord),
         new ComputerPlayer(player2.name, player2.token)
     ];
 
@@ -44,13 +45,16 @@ export function GameController(player1, player2) {
 }
 
 
-export function ScreenController(userName) {
+export function ScreenController(userName='Player1', coordinate) {
     const p1 = { name: userName, token: '1' };
     const p2 = { name: 'Computer', token: '2' };
     let cheatActive = false;
     createGameContainer()
 
-    const gameController = GameController(p1, p2);
+    const gameController = GameController(p1, p2, coordinate);
+    console.log(gameController.players[0].gameBoard.board);
+    console.log(gameController.players[1].gameBoard.board);
+
 
     const updateScreen = () => {
         // const turn = document.querySelector('#turn')
@@ -93,7 +97,8 @@ export function ScreenController(userName) {
                     gridButton.textContent = 'miss'
                 }
 
-                if (cheatActive && board[rowIndex][colIndex] > 0 && boardChoice === '#board2') {
+                // if (cheatActive && board[rowIndex][colIndex] > 0 && boardChoice === '#board2') {
+                if (cheatActive && board[rowIndex][colIndex] > 0) {
                     gridButton.style.background = 'green';
                 }
 

@@ -2,10 +2,10 @@ import { Ship } from './ShipClass.js'; // Adjust the path as per your project st
 
 export class GameBoard {
 
-    constructor() {
+    constructor(coord=[]) {
         this.ships = 5; // 5 pieces
         this.board = []
-        this.createBoard();
+        this.createBoard(coord);
         this.carrier = new Ship(5, 0, false);
         this.battleship = new Ship(4, 0, false);
         this.destroyer = new Ship(3, 0, false);
@@ -14,7 +14,8 @@ export class GameBoard {
     }
 
     // Temp board, 10 x 10
-    createBoard() {
+    createBoard(coord) {
+
         this.board = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -26,11 +27,22 @@ export class GameBoard {
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
 
-        for (let i = 1; i <= 5; i++){
-            this.getShipsRandomLocation(i);
+        if (coord.length === 0) {
+            for (let i = 1; i <= 5; i++) {
+                this.getShipsRandomLocation(i);
+            }
+        } else {
+            for (let j = 0; j < coord.length; j++) {
+                    const x = coord[j][0];
+                    const y = coord[j][1]
+                    this.board[x][y] = coord[j][2];
+                }
         }
-        
+
     }
+
+
+
 
     getShipsRandomLocation(length) {
         // const x = Math.floor(Math.random() * 10);
@@ -38,19 +50,19 @@ export class GameBoard {
         let row = Math.floor(Math.random() * 10);
         let col = Math.floor(Math.random() * 10);
 
-        while (col + length > 10 || !this.isAvailable(row,col,col + length)){
+        while (col + length > 10 || !this.isAvailable(row, col, col + length)) {
             col = Math.floor(Math.random() * 10);
             row = Math.floor(Math.random() * 10);
         }
 
-        for (let i = col; i < col+length; i++){
+        for (let i = col; i < col + length; i++) {
             this.board[row][i] = length;
         }
 
     }
-    isAvailable(row,start, end){
-        for (let i = start; i <= end; i++){
-            if (this.board[row][i] !== 0){
+    isAvailable(row, start, end) {
+        for (let i = start; i <= end; i++) {
+            if (this.board[row][i] !== 0) {
                 return false;
             }
         }

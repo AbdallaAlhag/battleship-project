@@ -1,4 +1,4 @@
-import { ScreenController } from "./controller";
+import { dragAndDropBoard } from "./dragAndDropBoard";
 
 export function welcomePage(){
     const screen = document.querySelector('.screen');
@@ -36,7 +36,7 @@ export function welcomePage(){
     // Add an event listener for the button
     buttonElement.addEventListener('click', () => {
         const inputValue = inputElement.value;
-        ScreenController(inputValue);
+        dragAndDropBoard(inputValue);
     });
 
     const buttonContainer = document.createElement('div')

@@ -24,11 +24,13 @@ body {
   height: 60px;
   width: 60px;
   border: 1px solid grey;
+  box-sizing: border-box;
 }
 
 .board button {
   background-color: whitesmoke;
-  padding: 10px 10px;
+  /* padding: 10px 10px; */
+  padding: 0;
   border: 1px solid grey;
   color: whitesmoke;
   /* color: black; */
