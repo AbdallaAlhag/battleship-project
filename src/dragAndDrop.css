@@ -1,10 +1,15 @@
 /* Based on the welcome page since we used that as template but added more */
 
+.create{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .outer-board-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5%;
 }
 
 .ship-container {
@@ -30,12 +35,14 @@
     display: flex;
     width: auto;
     flex-direction: row;
+    cursor: grab;
 }
 
 .cell {
     background-color: grey;
     height: 60px;
     width: 60px;
+    border: 4px solid #464646
 }
 
 .highlight {

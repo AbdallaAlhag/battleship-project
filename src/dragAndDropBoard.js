@@ -153,16 +153,16 @@ function createShips() {
 
     function dragStart(e) {
         beingDragged = e.target
-        console.log('dragging has started on ' + beingDragged.id)
+        // console.log('dragging has started on ' + beingDragged.id)
     }
 
     function dragging(e) {
-        console.log(beingDragged.id + ' is being dragged');
+        // console.log(beingDragged.id + ' is being dragged');
     }
 
     function dragOver(e) {
         e.preventDefault()
-        console.log("you are dragging something over " + e.target.classList);
+        // console.log("you are dragging something over " + e.target.classList);
     }
 
     function dragEnter(e) {
@@ -170,7 +170,7 @@ function createShips() {
 
         if (e.target.classList.contains('grid')) {
             e.target.classList.add('highlight');
-            console.log("you are entering the space of " + e.target.classList);
+            // console.log("you are entering the space of " + e.target.classList);
         }
     }
 
@@ -178,7 +178,7 @@ function createShips() {
 
         if (e.target.classList.contains('grid')) {
             e.target.classList.remove('highlight');
-            console.log("you are leaving the space of " + e.target.classList);
+            // console.log("you are leaving the space of " + e.target.classList);
         }
     }
 
@@ -204,14 +204,14 @@ function createShips() {
                 }
                 beingDragged.remove(); // Remove the original ship after placing it on the grid
             } else {
-                console.log('Ship does not fit within the grid bounds');
+                // console.log('Ship does not fit within the grid bounds');
             }
 
         }
     }
 
     function dragEnd(e) {
-        console.log("the drag has ended in   " + e.target.classList);
+        // console.log("the drag has ended in   " + e.target.classList);
     }
 
 

@@ -1,5 +1,14 @@
 import { RealPlayer, ComputerPlayer } from "./PlayerClass";
 import { welcomePage } from "./welcomePage";
+import blasting from './asset/blasting.png';
+import dust from './asset/dust.png';
+import ship1 from './asset/ship1.png';
+import ship2 from './asset/ship2.png';
+import ship3 from './asset/ship3.png';
+import ship4 from './asset/ship4.png';
+import ship5 from './asset/ship5.png';
+
+import terrorism from './asset/terrorism.gif'
 
 
 
@@ -56,15 +65,12 @@ export function ScreenController(userName = 'Player1', coordinate) {
 
 
     const updateScreen = () => {
-        // const turn = document.querySelector('#turn')
-        // turn.textContent = `${gameController.getActivePlayer()}'s turn`
 
         displayBoard(gameController.players[0], '#board1');
         displayBoard(gameController.players[1], '#board2');
 
     }
 
-    // const board1 = document.querySelector('#board1')
     updateScreen();
     createCheats(gameController);
 
@@ -76,7 +82,6 @@ export function ScreenController(userName = 'Player1', coordinate) {
         boardDiv.textContent = ''
 
         const board = player.gameBoard.board
-        console.log(board)
 
         board.forEach((row, rowIndex) => {
             row.forEach((grid, colIndex) => {
@@ -86,18 +91,29 @@ export function ScreenController(userName = 'Player1', coordinate) {
                 gridButton.dataset.col = colIndex;
                 gridButton.dataset.row = rowIndex;
 
-                gridButton.textContent = grid; //board[row][grid];
                 if (grid == -1) {
-                    gridButton.style.background = 'red';
-                    gridButton.textContent = 'hit'
+                    gridButton.style.background = '#da2323';
+                    gridButton.style.backgroundImage = `url(${blasting})`;
+                    gridButton.style.backgroundSize = "cover";
+                    gridButton.style.backgroundPosition = "center";
+                    gridButton.style.backgroundRepeat = "no-repeat";
+
                 } else if (grid == -2) {
-                    gridButton.style.background = 'blue';
-                    gridButton.textContent = 'miss'
+                    gridButton.style.backgroundImage = `url(${dust})`;
+                    gridButton.style.backgroundSize = "cover";
+                    gridButton.style.backgroundPosition = "center";
+                    gridButton.style.backgroundRepeat = "no-repeat";
                 }
 
                 // if (cheatActive && board[rowIndex][colIndex] > 0 && boardChoice === '#board2') {
                 if (cheatActive && board[rowIndex][colIndex] > 0) {
-                    gridButton.style.background = 'green';
+                    // gridButton.style.background = '#DA8923';
+                    gridButton.style.background = '#008B8B';
+                    // gridButton.style.background = '#2E8B57';
+
+                    
+                    
+                    styleShipBackground(gridButton, board[rowIndex][colIndex])
                 }
 
                 boardDiv.appendChild(gridButton);
@@ -112,9 +128,38 @@ export function ScreenController(userName = 'Player1', coordinate) {
 
             // Call it twice ? since one is a computer's turn
             if (gameController.playRound(row, col) || gameController.playRound()) {
-                alert('game over');
+                updateScreen();
+                setTimeout(() => {
+                    alert('Game Over!'), 2000
+                });
             } else {
                 updateScreen();
+            }
+        }
+
+
+        function styleShipBackground(button, val) {
+            button.style.backgroundSize = "cover";
+            button.style.backgroundPosition = "center";
+            button.style.backgroundRepeat = "no-repeat";
+            switch (val) {
+                case 5:
+                    button.style.backgroundImage = `url(${ship5})`;
+                    return
+                case 4:
+                    button.style.backgroundImage = `url(${ship4})`;
+                    return
+                case 3:
+                    button.style.backgroundImage = `url(${ship3})`;
+                    return
+                case 2:
+                    button.style.backgroundImage = `url(${ship2})`;
+                    return
+                case 1:
+                    button.style.backgroundImage = `url(${ship1})`;
+                    return
+                default:
+                    return
             }
         }
 
@@ -133,9 +178,8 @@ export function ScreenController(userName = 'Player1', coordinate) {
         cheatButton.addEventListener('click', () => {
             cheatActive = !cheatActive; // Toggle cheat mode state
             displayBoard(gameController.players[1], '#board2'); // Update board display after toggling cheat mode
-            displayBoard(gameController.players[0], '#board1'); 
+            displayBoard(gameController.players[0], '#board1');
         })
-
     }
 
 }
@@ -202,6 +246,7 @@ function createGameContainer() {
 
     const screen = document.querySelector('.screen');
     screen.classList.remove('welcome');
+    screen.classList.remove('create');
     screen.classList.add('game');
     screen.textContent = '';
     screen.appendChild(container);

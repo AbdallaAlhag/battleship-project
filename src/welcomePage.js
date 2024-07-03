@@ -3,6 +3,8 @@ import { dragAndDropBoard } from "./dragAndDropBoard";
 export function welcomePage(){
     const screen = document.querySelector('.screen');
     screen.classList.remove('game');
+    screen.classList.remove('create');
+
     screen.classList.add('welcome');
     screen.textContent = '';
 

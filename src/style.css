@@ -1,37 +1,73 @@
+/* text-font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+/* .press-start-2p-regular {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+} */
+
+/* button-font */
+@font-face {
+  font-family: 'pixelButtonFont'; /* Replace with your preferred font name */
+  src: url('./asset/visitor-brk.visitor-tt1-brk.ttf') format('truetype');
+  /* Add additional src declarations for other font formats if needed */
+}
+
+@font-face {
+  font-family: 'PirateFont'; /* Replace with your preferred font name */
+  src: url('./asset/fofbb_reg.ttf') format('truetype');
+  /* Add additional src declarations for other font formats if needed */
+}
+
+@font-face {
+  font-family: 'PirateFontButton'; /* Replace with your preferred font name */
+  src: url('./asset/Karma_Future.otf') format('opentype');
+  /* Add additional src declarations for other font formats if needed */
+}
+
 body {
+  font-family: 'Press Start 2P', Arial, sans-serif;
   margin: 0;
 }
 .screen {
   height: 100vh;
   width: 100%;
 }
+.game{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .board-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-top: 5%;
 }
 
 .board {
   display: flex;
   flex-wrap: wrap;
-  height: 610px;
-  width: 610px;
-  border: 5px solid black;
+  height: 660px;
+  width: 647px;
+  border: 5px solid #002c66;
+  gap: 4px;
+  background-color: #002c66;
 }
 
 .grid {
   height: 60px;
   width: 60px;
-  border: 1px solid grey;
+  border: 1px solid #002c66;
   box-sizing: border-box;
+  cursor: crosshair;
 }
 
 .board button {
-  background-color: whitesmoke;
+  background-color: #2389da;
   /* padding: 10px 10px; */
   padding: 0;
-  border: 1px solid grey;
+  border: 1px solid #002c66;
   color: whitesmoke;
   /* color: black; */
 }
@@ -39,7 +75,6 @@ body {
 .board.cheat button {
   background-color: green;
 }
-
 
 .inner-board-container {
   text-align: center;
@@ -49,7 +84,22 @@ body {
 .board button:hover {
   /* color: whitesmoke; */
   color: grey;
-  background-color: grey;
+  background-image: url(./asset/target.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.board button:active {
+  animation: bounce 0.5s;
+}
+
+@keyframes bounce {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.2); }
+  50% { transform: scale(0.9); }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 .game-button-container {
@@ -59,7 +109,8 @@ body {
   gap: 50px;
 }
 
-.game-button-container button::after{
+
+.game-button-container button::after {
   content: "";
   position: absolute;
   left: 0;
@@ -74,6 +125,8 @@ body {
 }
 
 .game-button-container button {
+  font-family: 'pixelButtonFont', Arial, sans-serif;
+  font-size: 20px;
   height: 50px;
   width: 200px;
   position: relative;
@@ -86,13 +139,13 @@ body {
   transition: all 0.2s ease-in-out;
 }
 
-.game-button-container button:hover{
+.game-button-container button:hover {
   box-shadow: 1px 1px 200px #252525;
   color: #fff;
   border: none;
 }
 
-.game-button-container button:hover::after{
+.game-button-container button:hover::after {
   visibility: visible;
   transform: scale(100) translateX(2px);
 }

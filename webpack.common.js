@@ -9,7 +9,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      // favicon: `./src/assets/favicon.png`,
+      favicon: `./src/asset/BattleshipFavicon.png`,
     }),
     // new HtmlWebpackPlugin({
     //   template: './src/index.html', // Use a single HTML template
