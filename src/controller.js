@@ -65,10 +65,8 @@ export function ScreenController(userName = 'Player1', coordinate) {
 
 
     const updateScreen = () => {
-
         displayBoard(gameController.players[0], '#board1');
         displayBoard(gameController.players[1], '#board2');
-
     }
 
     updateScreen();
@@ -111,8 +109,8 @@ export function ScreenController(userName = 'Player1', coordinate) {
                     gridButton.style.background = '#008B8B';
                     // gridButton.style.background = '#2E8B57';
 
-                    
-                    
+
+
                     styleShipBackground(gridButton, board[rowIndex][colIndex])
                 }
 
@@ -128,9 +126,11 @@ export function ScreenController(userName = 'Player1', coordinate) {
 
             // Call it twice ? since one is a computer's turn
             if (gameController.playRound(row, col) || gameController.playRound()) {
-                updateScreen();
+                // updateScreen();
+                // displayBoard(gameController.players[0], '#board1');
+                // displayBoard(gameController.players[1], '#board2');
                 setTimeout(() => {
-                    alert('Game Over!'), 2000
+                    alert('Game Over! Press reset to start over'), 2000
                 });
             } else {
                 updateScreen();
