@@ -76,8 +76,7 @@ export function ScreenController(userName = 'Player1', coordinate) {
         boardDiv.textContent = ''
 
         const board = player.gameBoard.board
-
-
+        console.log(board)
 
         board.forEach((row, rowIndex) => {
             row.forEach((grid, colIndex) => {
@@ -134,7 +133,7 @@ export function ScreenController(userName = 'Player1', coordinate) {
         cheatButton.addEventListener('click', () => {
             cheatActive = !cheatActive; // Toggle cheat mode state
             displayBoard(gameController.players[1], '#board2'); // Update board display after toggling cheat mode
-
+            displayBoard(gameController.players[0], '#board1'); 
         })
 
     }
