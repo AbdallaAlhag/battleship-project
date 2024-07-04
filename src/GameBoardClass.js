@@ -2,7 +2,7 @@ import { Ship } from './ShipClass.js'; // Adjust the path as per your project st
 
 export class GameBoard {
 
-    constructor(coord=[]) {
+    constructor(coord = []) {
         this.ships = 5; // 5 pieces
         this.board = []
         this.createBoard(coord);
@@ -33,10 +33,10 @@ export class GameBoard {
             }
         } else {
             for (let j = 0; j < coord.length; j++) {
-                    const x = coord[j][0];
-                    const y = coord[j][1]
-                    this.board[x][y] = Number(coord[j][2]);
-                }
+                const x = coord[j][0];
+                const y = coord[j][1]
+                this.board[x][y] = Number(coord[j][2]);
+            }
         }
 
     }
@@ -45,8 +45,6 @@ export class GameBoard {
 
 
     getShipsRandomLocation(length) {
-        // const x = Math.floor(Math.random() * 10);
-        // const y = Math.floor(Math.random() * 10);
         let row = Math.floor(Math.random() * 10);
         let col = Math.floor(Math.random() * 10);
 
@@ -80,6 +78,7 @@ export class GameBoard {
             this.board[x][y] = -2
         }
     }
+
 
     checkShip(val) {
         switch (val) {

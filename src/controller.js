@@ -8,7 +8,7 @@ import ship3 from './asset/ship3.png';
 import ship4 from './asset/ship4.png';
 import ship5 from './asset/ship5.png';
 
-import terrorism from './asset/terrorism.gif'
+// import terrorism from './asset/terrorism.gif'
 
 
 
@@ -33,10 +33,13 @@ export function GameController(player1, player2, player1Coord) {
         } else {
             let x, y;
             do {
-                ({ x, y } = players[1].makeMove());
+                ({ x, y } = players[1].makeMove(players[0].gameBoard));
             } while (players[0].gameBoard.board[x][y] < 0)
-
-            players[0].gameBoard.receiveAttack(x, y)
+            
+            const ship = players[0].gameBoard.board[x][y]
+            players[0].gameBoard.receiveAttack(x, y);
+            // check if we sunk to clear our next hit and not waste turns
+            players[1].checkSunk(x,y,players[0].gameBoard,ship);
             if (players[0].gameBoard.gameOver()) {
                 return true;
             }
@@ -126,12 +129,11 @@ export function ScreenController(userName = 'Player1', coordinate) {
 
             // Call it twice ? since one is a computer's turn
             if (gameController.playRound(row, col) || gameController.playRound()) {
-                // updateScreen();
-                // displayBoard(gameController.players[0], '#board1');
-                // displayBoard(gameController.players[1], '#board2');
+                updateScreen();
                 setTimeout(() => {
                     alert('Game Over! Press reset to start over'), 2000
                 });
+                // removeEventlistener(gameController.players[1], '#board2')
             } else {
                 updateScreen();
             }
@@ -167,12 +169,26 @@ export function ScreenController(userName = 'Player1', coordinate) {
         boardDiv.replaceWith(boardDiv.cloneNode(true));
         const newBoardDiv = document.querySelector(boardChoice);
 
-        if (newBoardDiv.id === 'board2') {
+        if (newBoardDiv.id === 'board2' && gameController.players[1].gameBoard.gameOver() === false && gameController.players[1].gameBoard.gameOver() === false) {
             newBoardDiv.addEventListener("click", clickHandlerBoard);
         }
 
+        // function removeEventlistener(player,boardChoice){
+        //     const boardDiv = document.querySelector(boardChoice);
+        //     const board = player.gameBoard.board;
+        //     // boardDiv.removeEventListener('click',clickHandlerBoard);
+    
+        //     board.forEach((row, rowIndex) => {
+        //         row.forEach((grid, colIndex) => {
+        //             const gridButton = boardDiv.querySelector(`[data-col="${colIndex}"][data-row="${rowIndex}"]`)
+        //             gridButton.removeEventListener('click',clickHandlerBoard);
+        //         })
+        //     })
+        // }
+
     }
 
+    
     function createCheats(gameController) {
         const cheatButton = document.querySelector('#cheat-button')
         cheatButton.addEventListener('click', () => {

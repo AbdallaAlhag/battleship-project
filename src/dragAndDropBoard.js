@@ -221,7 +221,7 @@ function isShipWithinBounds(startCell, shipLength) {
     const startCol = parseInt(startCell.dataset.col, 10);
     const startRow = parseInt(startCell.dataset.row, 10);
     // Check if the ship fits within the grid bounds horizontally
-    if (startCol + shipLength >= 10 || startRow >= 10) {
+    if (startCol + shipLength > 10 || startRow > 10) {
         return false;
     }
 

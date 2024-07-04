@@ -15,4 +15,5 @@ export class Ship{
             return this.sink;
         }
     }
+
 }
