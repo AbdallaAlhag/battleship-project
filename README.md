@@ -1,7 +1,7 @@
 
 ## Live demo
 
-Available [here](https://jcampbell57.github.io/naval-warfare/)
+Available [here](https://abdallaalhag.github.io/battleship-project/)
 
 # Project Title
 
